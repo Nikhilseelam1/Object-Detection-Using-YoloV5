@@ -7,7 +7,6 @@ from signLanguage.exception import SignException
 from signLanguage.entity.config_entity import ModelTrainerConfig
 from signLanguage.entity.artifacts_entity import ModelTrainerArtifact
 
-
 class ModelTrainer:
     def __init__(self, model_trainer_config: ModelTrainerConfig):
         try:
@@ -24,7 +23,6 @@ class ModelTrainer:
                 os.path.dirname(self.model_trainer_config.trained_model_path),
                 exist_ok=True
             )
-
             train_command = [
                 "python", "yolov5/train.py",
                 "--img", str(self.model_trainer_config.image_size),
@@ -36,9 +34,7 @@ class ModelTrainer:
             ]
 
             logging.info(f"Training command: {' '.join(train_command)}")
-
             subprocess.run(train_command, check=True)
-
             source_model_path = os.path.join(
                 "yolov5",
                 "runs",
@@ -47,17 +43,13 @@ class ModelTrainer:
                 "weights",
                 "best.pt"
             )
-
             shutil.copy(
                 source_model_path,
                 self.model_trainer_config.trained_model_path
             )
-
             logging.info("Model training completed successfully")
-
             return ModelTrainerArtifact(
                 trained_model_path=self.model_trainer_config.trained_model_path
             )
-
         except Exception as e:
             raise SignException(e, sys)

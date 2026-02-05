@@ -8,7 +8,6 @@ SOURCE_DIR = (
     "data_ingestion/feature_store/"
     "asl_alphabet_train/asl_alphabet_train"
 )
-
 BASE_DIR = Path("data")
 IMAGES_TRAIN = BASE_DIR / "images/train"
 IMAGES_VAL = BASE_DIR / "images/val"
@@ -33,7 +32,6 @@ for cls in classes:
 train_imgs, val_imgs = train_test_split(
     all_images, test_size=0.2, random_state=42
 )
-
 def convert(images, img_dir, label_dir):
     for img_path, class_id in images:
         shutil.copy(img_path, img_dir / img_path.name)
