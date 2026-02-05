@@ -3,6 +3,7 @@ from PIL import Image
 import os
 import torch
 
+
 st.set_page_config(
     page_title="ASL Sign Language Detection",
     layout="centered"

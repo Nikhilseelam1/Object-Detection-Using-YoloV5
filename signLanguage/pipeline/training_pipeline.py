@@ -7,7 +7,6 @@ from signLanguage.components.model_trainer import ModelTrainer
 from signLanguage.entity.config_entity import (DataIngestionConfig,DataValidationConfig,ModelTrainerConfig)
 from signLanguage.entity.artifacts_entity import (DataIngestionArtifact,DataValidationArtifact,ModelTrainerArtifact)
 
-
 class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()

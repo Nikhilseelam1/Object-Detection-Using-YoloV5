@@ -7,6 +7,7 @@ from signLanguage.exception import SignException
 from signLanguage.entity.config_entity import ModelTrainerConfig
 from signLanguage.entity.artifacts_entity import ModelTrainerArtifact
 
+
 class ModelTrainer:
     def __init__(self, model_trainer_config: ModelTrainerConfig):
         try:
