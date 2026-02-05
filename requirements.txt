@@ -3,8 +3,6 @@ from-root==1.0.2
 notebook==7.0.0a7
 boto3
 mypy-boto3-s3
-flask-cors
-flask
 matplotlib>=3.2.2
 numpy>=1.18.5
 opencv-python>=4.1.1
@@ -17,8 +15,8 @@ torchvision>=0.8.1
 tqdm>=4.64.0
 gdown
 tensorboard>=2.4.1
-
-
+streamlit
+Pillow
 pandas>=1.1.4
 seaborn>=0.11.0
 
