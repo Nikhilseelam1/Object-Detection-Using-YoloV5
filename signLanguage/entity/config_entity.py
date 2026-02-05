@@ -42,3 +42,25 @@ class DataValidationConfig:
 
     required_dir_list = DATA_VALIDATION_ALL_REQUIRED_DIRS
 
+from dataclasses import dataclass
+import os
+from signLanguage.constant.training_pipeline import *
+
+@dataclass
+class ModelTrainerConfig:
+    model_trainer_dir: str = os.path.join(
+        training_pipeline_config.artifacts_dir,
+        MODEL_TRAINER_DIR_NAME
+    )
+
+    trained_model_path: str = os.path.join(
+        model_trainer_dir,
+        MODEL_TRAINER_TRAINED_MODEL_DIR,
+        MODEL_TRAINER_WEIGHTS_NAME
+    )
+
+    epochs: int = MODEL_TRAINER_EPOCHS
+    batch_size: int = MODEL_TRAINER_BATCH_SIZE
+    image_size: int = MODEL_TRAINER_IMAGE_SIZE
+
+

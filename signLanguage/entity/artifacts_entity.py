@@ -9,3 +9,9 @@ class DataIngestionArtifact:
 @dataclass
 class DataValidationArtifact:
     validation_status: bool
+
+from dataclasses import dataclass
+
+@dataclass
+class ModelTrainerArtifact:
+    trained_model_path: str

@@ -21,3 +21,18 @@ DATA_VALIDATION_ALL_REQUIRED_DIRS = [
     "labels/train",
     "labels/val",
 ]
+
+
+
+MODEL_TRAINER_DIR_NAME: str = "model_trainer"
+
+MODEL_TRAINER_TRAINED_MODEL_DIR: str = "trained_model"
+
+MODEL_TRAINER_WEIGHTS_NAME: str = "best.pt"
+
+MODEL_TRAINER_EPOCHS: int = 20
+
+MODEL_TRAINER_BATCH_SIZE: int = 8
+
+MODEL_TRAINER_IMAGE_SIZE: int = 416
+

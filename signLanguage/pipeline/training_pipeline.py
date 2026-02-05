@@ -3,14 +3,16 @@ from signLanguage.logger import logging
 from signLanguage.exception import SignException
 from signLanguage.components.data_ingestion import DataIngestion
 from signLanguage.components.data_validation import DataValidation
-from signLanguage.entity.config_entity import (DataIngestionConfig,DataValidationConfig)
-from signLanguage.entity.artifacts_entity import (DataIngestionArtifact,DataValidationArtifact)
+from signLanguage.components.model_trainer import ModelTrainer
+from signLanguage.entity.config_entity import (DataIngestionConfig,DataValidationConfig,ModelTrainerConfig)
+from signLanguage.entity.artifacts_entity import (DataIngestionArtifact,DataValidationArtifact,ModelTrainerArtifact)
 
 
 class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config = DataValidationConfig()
+        self.model_trainer_config = ModelTrainerConfig()
 
     def start_data_ingestion(self) -> DataIngestionArtifact:
         try:
@@ -51,6 +53,24 @@ class TrainPipeline:
 
         except Exception as e:
             raise SignException(e, sys) from e
+        
+    def start_model_trainer(self) -> ModelTrainerArtifact:
+        try:
+            logging.info("Entered the start_model_trainer method")
+
+            model_trainer = ModelTrainer(
+                model_trainer_config=self.model_trainer_config
+            )
+
+            model_trainer_artifact = model_trainer.initiate_model_trainer()
+
+            logging.info("Exited the start_model_trainer method")
+
+            return model_trainer_artifact
+
+        except Exception as e:
+            raise SignException(e, sys)
+
     
     def run_pipeline(self) -> None:
         try:
@@ -58,5 +78,7 @@ class TrainPipeline:
             data_validation_artifact = self.start_data_validation(
                 data_ingestion_artifact=data_ingestion_artifact
             )
+            if data_validation_artifact.validation_status == True:
+                model_trainer_artifact = self.start_model_trainer()
         except Exception as e:
             raise SignException(e, sys)
